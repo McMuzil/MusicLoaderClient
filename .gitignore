@@ -29,7 +29,7 @@ Makefile*
 # QtCreator
 
 *.autosave
-
+/_build
 # QtCtreator Qml
 *.qmlproject.user
 *.qmlproject.user.*

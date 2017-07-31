@@ -2,9 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QTcpSocket>
-#include <QObject>
-#include <QDebug>
+#include <QLineEdit>
 
 namespace Ui {
 class MainWindow;
@@ -17,14 +15,10 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-public slots:
-    void readTcpData();
-private slots:
-    void on_pushButton_clicked();
-
-private:
+    QString getLineEditText();
     Ui::MainWindow *ui;
-    QTcpSocket* socket;
+private:
+    QLineEdit* lineEdit;
 };
 
 #endif // MAINWINDOW_H
