@@ -20,7 +20,6 @@ public:
     MainWindow* mainWindow;
 public slots:
     void ConfigureReading();
-    void sendMessage(bool value);
 private:
     void Init();
     QString savePath = "/sdcard/Music/";

@@ -7,17 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    lineEdit = ui->lineEdit;
-
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete lineEdit;
-}
-
-QString MainWindow::getLineEditText()
-{
-    return lineEdit->text();
 }

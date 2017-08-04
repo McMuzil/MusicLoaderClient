@@ -15,10 +15,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    QString getLineEditText();
     Ui::MainWindow *ui;
-private:
-    QLineEdit* lineEdit;
 };
 
 #endif // MAINWINDOW_H

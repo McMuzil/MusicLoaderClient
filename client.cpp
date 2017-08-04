@@ -9,7 +9,7 @@ Client::Client()
     socket = new QTcpSocket(mainWindow);
 
     QObject::connect(socket, SIGNAL(readyRead()),this,SLOT(ConfigureReading()));
-    QObject::connect(mainWindow->ui->pushButton,SIGNAL(clicked(bool)), this, SLOT(sendMessage(bool)));
+    //QObject::connect(mainWindow->ui->pushButton,SIGNAL(clicked(bool)), this, SLOT(sendMessage(bool)));
     QObject::connect(mainWindow->ui->actionConnect_to_server,SIGNAL(triggered(bool)),this,SLOT(openDialog(bool)));
 
 
@@ -19,26 +19,6 @@ Client::~Client()
 {
     delete mainWindow;
     delete socket;
-}
-
-void Client::sendMessage(bool value)
-{
-    if(!connected)
-    {
-        QMessageBox msg(mainWindow);
-        msg.setText("No connection to the server!");
-        msg.exec();
-        return;
-    }
-
-    if(socket != NULL && socket->state() == QTcpSocket::ConnectedState)
-    {
-        socket->write(mainWindow->getLineEditText().toLatin1());
-        socket->flush();
-
-        socket->waitForBytesWritten(3000);
-    }
-
 }
 
 void Client::openDialog(bool value)
