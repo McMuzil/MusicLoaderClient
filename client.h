@@ -8,6 +8,8 @@
 #include <QDebug>
 #include <QMessageBox>
 #include "connectiondialog.h"
+#include <QFile>
+#include <QString>
 
 class Client : QObject
 {
@@ -17,13 +19,21 @@ public:
     ~Client();
     MainWindow* mainWindow;
 public slots:
-    void readTcpData();
+    void ConfigureReading();
     void sendMessage(bool value);
 private:
+    void Init();
+    QString savePath = "/sdcard/Music/";
     ConnectionDialog* dialog;
     QTcpSocket* socket = NULL;
     bool connected = false;
+    int totalBytes = 0;
+    int bytesReceived;
+    bool initialized;
+    QFile* file;
+    enum commandList {None,MusicTransmission};
 private slots:
+    void ReceiveSong();
     void openDialog(bool value);
     void connectToServer();
 };

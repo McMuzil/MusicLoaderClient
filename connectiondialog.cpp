@@ -3,7 +3,7 @@
 #include <QDialogButtonBox>
 #include <QPushButton>
 #include <QRegExpValidator>
-
+#include <QSettings>
 ConnectionDialog::~ConnectionDialog()
 {
     delete lineEdit;
@@ -12,9 +12,21 @@ ConnectionDialog::~ConnectionDialog()
 
 ConnectionDialog::ConnectionDialog(QWidget* parent)
 {
+
+
+
+
+
     lineEdit = new QLineEdit(this);
     lineEdit->setPlaceholderText("192.168.2.1");
     lineEdit->setValidator(new QRegExpValidator(QRegExp( "[0-9]{1,3}[.][0-9]{1,3}[.][0-9]{1,3}[.][0-9]{1,3}" )));
+
+    QSettings settings("sdcard/ConnectionSettings.ini", QSettings::IniFormat);
+
+    settings.beginGroup("client");
+    lineEdit->setText(settings.value("ip", "").toString());
+
+
     QPushButton* connectButton = new QPushButton("Connect");
     QPushButton* cancelButton = new QPushButton("Cancel");
 
@@ -38,6 +50,8 @@ void ConnectionDialog::CloseDialog()
 
 QString ConnectionDialog::GetIP()
 {
+
+
     return lineEdit->text();
 }
 
