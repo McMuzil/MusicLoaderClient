@@ -87,7 +87,6 @@ void Client::Init()
 
 void Client::ReceiveSong()
 {
-    qDebug() << "ReceiveSong";
 
     if(!initialized)
     {
@@ -100,8 +99,9 @@ void Client::ReceiveSong()
         streamSizeOfFileName >> fileNameLength;
         qDebug() << fileNameLength << "length of fileName";
 
-        QString fileName = socket->read(fileNameLength).data(); // reading song name
-        file = new QFile(savePath + fileName);
+        //QString fileName = socket->read(fileNameLength).data(); // reading song name
+        //qDebug() << fileName;
+        file = new QFile(socket->read(fileNameLength).data());
         file->open(QIODevice::WriteOnly);
 
         initialized = true;
