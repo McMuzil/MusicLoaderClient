@@ -70,7 +70,7 @@ void Client::ConfigureReading()
         qDebug() << "case";
         Init();
         QObject::disconnect(socket, SIGNAL(readyRead()),this,SLOT(ConfigureReading()));
-        QObject::connect(socket, SIGNAL(readyRead()),this, SLOT(ReceiveSong()));
+        QObject::connect(socket, SIGNAL(readyRead()),this, SLOT(ReceiveFiles()));
         break;
     default:
         qErrnoWarning("there is no command with code - " + command);
@@ -85,7 +85,7 @@ void Client::Init()
     bytesReceived = totalBytes = 0;
 }
 
-void Client::ReceiveSong()
+void Client::ReceiveFiles()
 {
 
     if(!initialized)
@@ -121,7 +121,7 @@ void Client::ReceiveSong()
         delete file;
         initialized = false;
 
-        QObject::disconnect(socket, SIGNAL(readyRead()),this,SLOT(ReceiveSong()));
+        QObject::disconnect(socket, SIGNAL(readyRead()),this,SLOT(ReceiveFiles()));
         QObject::connect(socket, SIGNAL(readyRead()),this, SLOT(ConfigureReading()));
     }
 }

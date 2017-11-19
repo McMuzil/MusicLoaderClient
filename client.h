@@ -22,7 +22,7 @@ public slots:
     void ConfigureReading();
 private:
     void Init();
-    QString savePath = "/sdcard/Music/";
+    QString savePath = "/sdcard/DownloadedFiles/";
     ConnectionDialog* dialog;
     QTcpSocket* socket = NULL;
     bool connected = false;
@@ -32,7 +32,7 @@ private:
     QFile* file;
     enum commandList {None,MusicTransmission};
 private slots:
-    void ReceiveSong();
+    void ReceiveFiles();
     void openDialog(bool value);
     void connectToServer();
 };
