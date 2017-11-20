@@ -101,7 +101,7 @@ void Client::ReceiveFiles()
 
         //QString fileName = socket->read(fileNameLength).data(); // reading song name
         //qDebug() << fileName;
-        file = new QFile(socket->read(fileNameLength).data());
+        file = new QFile(savePath + socket->read(fileNameLength).data());
         file->open(QIODevice::WriteOnly);
 
         initialized = true;
